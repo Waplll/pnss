@@ -1,0 +1,23 @@
+{
+    "name": "waplll/pnss",
+    "description": "praktika",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Waplll",
+            "email": "maximdmitriys@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.4 | ^8.0"
+
+    },
+    "autoload": {
+        "psr-4": {
+            "Src\\": "core/Src/",
+            "": "app/"
+        }
+    }
+}
