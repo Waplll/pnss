@@ -4,6 +4,7 @@ namespace Src;
 
 use Error;
 
+
 class Route
 {
     private static array $routes = [];
@@ -42,6 +43,7 @@ class Route
         }
 
 
-        call_user_func([new $class, $action]);
+        call_user_func([new $class, $action], new Request());
     }
+
 }
