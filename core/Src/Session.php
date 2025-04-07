@@ -1,10 +1,10 @@
 <?php
-
 namespace Src;
 
 class Session
 {
-    public static function set($name, $value): void
+
+    public static function set($name, $value) :void
     {
         $_SESSION[$name] = $value;
     }
@@ -13,9 +13,10 @@ class Session
     {
         return $_SESSION[$name] ?? null;
     }
-
     public static function clear($name)
     {
         unset($_SESSION[$name]);
     }
+
+
 }

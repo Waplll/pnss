@@ -4,10 +4,9 @@ namespace Src;
 
 use Error;
 use Illuminate\Container\Container;
-use Illuminate\Events\Dispatcher;
 use Illuminate\Database\Capsule\Manager as Capsule;
+use Illuminate\Events\Dispatcher;
 use Src\Auth\Auth;
-
 class Application
 {
     private Settings $settings;
@@ -17,7 +16,6 @@ class Application
 
     public function __construct(Settings $settings)
     {
-        //Привязываем класс со всеми настройками приложения
         $this->settings = $settings;
         //Привязываем класс маршрутизации с установкой префикса
         $this->route = Route::single()->setPrefix($this->settings->getRootPath());
@@ -30,6 +28,7 @@ class Application
         $this->dbRun();
         //Инициализация класса пользователя на основе настроек приложения
         $this->auth::init(new $this->settings->app['identity']);
+
     }
 
     public function __get($key)
@@ -43,19 +42,19 @@ class Application
                 return $this->auth;
         }
         throw new Error('Accessing a non-existent property');
+
     }
+
 
     private function dbRun()
     {
         $this->dbManager->addConnection($this->settings->getDbSetting());
-        $this->dbManager->setEventDispatcher(new Dispatcher(new Container));
         $this->dbManager->setAsGlobal();
         $this->dbManager->bootEloquent();
     }
 
     public function run(): void
     {
-        //Запуск маршрутизации
         $this->route->start();
     }
 }

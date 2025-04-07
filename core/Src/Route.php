@@ -1,5 +1,4 @@
 <?php
-
 namespace Src;
 
 use Error;
@@ -53,9 +52,10 @@ class Route
         return $this;
     }
 
-    public function redirect(string $url): void
+    public function redirect(string $url): string
     {
         header('Location: ' . $this->getUrl($url));
+        exit;
     }
 
     public function getUrl(string $url): string

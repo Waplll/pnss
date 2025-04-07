@@ -16,6 +16,7 @@ class Site
     public function index(Request $request): string
     {
 
+        //    $departments = Department::where('id', $request->id)->get(); Не работает!!!
         $departments = Department::all();
         return (new View())->render('site.department', ['departments' => $departments]);
     }
@@ -30,12 +31,15 @@ class Site
 
     public function login(Request $request): string
     {
+        //Если просто обращение к странице, то отобразить форму
         if ($request->method === 'GET') {
             return new View('site.login');
         }
+        //Если удалось аутентифицировать пользователя, то редирект
         if (Auth::attempt($request->all())) {
             app()->route->redirect('/hello');
         }
+        //Если аутентификация не удалась, то сообщение об ошибке
         return new View('site.login', ['message' => 'Неправильные логин или пароль']);
     }
 

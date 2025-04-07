@@ -6,14 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 class Discipline extends Model
 {
     public $timestamps = false;
+    protected $table = 'disciplines';
     protected $fillable = ['name'];
-    public function students()
-    {
-        return $this->belongsToMany(Student::class, 'student_discipline');
-    }
 
-    public function grades()
+    public function groups()
     {
-        return $this->hasMany(Grade::class);
+        return $this->belongsToMany(Group::class, 'group_discipline');
     }
 }

@@ -6,15 +6,33 @@
         <form class="MakeStudent" method="post">
             <div class="classForSettingForm">
                 <label for="surname">Фамилия</label>
-                <input class="inputForm" type="text" id="surname" name="surname" placeholder="Введите фамилию">
+                <input class="inputForm" type="text" id="surname" name="surname" placeholder="Введите фамилию"
+                       value="<?= htmlspecialchars($old['surname'] ?? '') ?>"
+                       pattern="[А-Яа-яЁё\s\-]{2,50}"
+                       title="Только русские буквы, дефисы и пробелы">
+                <?php if (isset($errors['surname'])): ?>
+                    <div class="error"><?= implode('<br>', $errors['surname']) ?></div>
+                <?php endif; ?>
             </div>
             <div class="classForSettingForm">
                 <label for="name">Имя</label>
-                <input class="inputForm" type="text" id="name" name="name" placeholder="Введите имя">
+                <input class="inputForm" type="text" id="name" name="name" placeholder="Введите имя"
+                       value="<?= htmlspecialchars($old['name'] ?? '') ?>"
+                       pattern="[А-Яа-яЁё\s\-]{2,50}"
+                       title="Только русские буквы, дефисы и пробелы">
+                <?php if (isset($errors['name'])): ?>
+                    <div class="error"><?= implode('<br>', $errors['name']) ?></div>
+                <?php endif; ?>
             </div>
             <div class="classForSettingForm">
                 <label for="patronymic">Отчество</label>
-                <input class="inputForm" type="text" id="patronymic" name="patronymic" placeholder="Введите Отчество">
+                <input class="inputForm" type="text" id="patronymic" name="patronymic" placeholder="Введите Отчество"
+                       value="<?= htmlspecialchars($old['patronymic'] ?? '') ?>"
+                       pattern="[А-Яа-яЁё\s\-]{2,50}"
+                       title="Только русские буквы, дефисы и пробелы">
+                <?php if (isset($errors['patronymic'])): ?>
+                    <div class="error"><?= implode('<br>', $errors['patronymic']) ?></div>
+                <?php endif; ?>
             </div>
             <div class="classForSettingForm">
                 <label for="gender">Выберите пол:</label>

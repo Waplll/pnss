@@ -5,6 +5,7 @@ use Src\Session;
 
 class Auth
 {
+    //Свойство для хранения любого класса, реализующего интерфейс IdentityInterface
     private static IdentityInterface $user;
 
     //Инициализация класса пользователя
@@ -49,6 +50,7 @@ class Auth
         return false;
     }
 
+    //Выход текущего пользователя
     public static function logout(): bool
     {
         Session::clear('id');

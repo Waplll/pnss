@@ -32,6 +32,7 @@ class Settings
     }
     public function getDbSetting(): array
     {
-        return $this->db ?? [];
+        return $this->_settings['db'] ?? [];
     }
+
 }

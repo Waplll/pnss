@@ -9,4 +9,8 @@ class Student extends Model
     protected $table = 'students';
     protected $fillable = ['surname', 'name', 'patronymic', 'gender', 'birth_date', 'address', 'group_id'];
 
+    public function group()
+    {
+        return $this->belongsTo(Group::class, 'group_id');
+    }
 }

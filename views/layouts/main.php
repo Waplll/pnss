@@ -12,6 +12,9 @@
     <div class="wraper firstBlockOfHeader">
         <div class="contForButtonLogin">
             <?php if (app()->auth::check()): ?>
+                <?php if (app()->auth::user()->role === 'admin'): ?>
+                    <button class="headerButtonLogin reg" onclick="window.location.href='<?= app()->route->getUrl('/register') ?>'">Регистрация</button>
+                <?php endif; ?>
                 <button class="headerButtonLogin" onclick="window.location.href='<?= app()->route->getUrl('/logout') ?>'">Выход</button>
             <?php else: ?>
                 <button class="headerButtonLogin" onclick="window.location.href='<?= app()->route->getUrl('/login') ?>'">Вход</button>
@@ -27,18 +30,18 @@
                         <button class="headerButton" onclick="window.location.href='<?= app()->route->getUrl('/makeGroup') ?>'">Создание группы</button>
                     </div>
                     <div class="contForButtonMakeStudents">
-                        <button class="headerButton" onclick="window.location.href='<?= app()->route->getUrl('/makeDisciplene') ?>'">Создание дисциплины</button>
+                        <button class="headerButton" onclick="window.location.href='<?= app()->route->getUrl('/makeDiscipline') ?>'">Создание дисциплины</button>
                     </div>
                 </div>
                 <div class="lowerRowForButtons">
                     <div class="contForButtonCheckMarkStudent">
-                        <button class="headerButton" onclick="window.location.href='<?= app()->route->getUrl('/checkMarkForDiscipleneAndHours') ?>'">Выбрать успеваемость студента</button>
+                        <button class="headerButton" onclick="window.location.href='<?= app()->route->getUrl('/showStudentGrades') ?>'">Выбрать успеваемость студента</button>
                     </div>
                     <div class="contForButtonCheckMarkGroupOrDisciplene">
-                        <button class="headerButton" onclick="window.location.href='<?= app()->route->getUrl('/checkStudentForGroupAndDisciplene') ?>'">Выбрать успеваемость по группам</button>
+                        <button class="headerButton" onclick="window.location.href='<?= app()->route->getUrl('/showGroupGrades') ?>'">Выбрать успеваемость по группам</button>
                     </div>
                     <div class="contForButtonMakeGroup">
-                        <button class="headerButton" onclick="window.location.href='<?= app()->route->getUrl('/checkDisciplene') ?>'">Выбрать дисциплину</button>
+                        <button class="headerButton" onclick="window.location.href='<?= app()->route->getUrl('/showGroupDisciplines') ?>'">Выбрать дисциплину</button>
                     </div>
                 </div>
             </div>
@@ -58,6 +61,9 @@
             width: 100vw;
             box-sizing: border-box;
             margin: 0 auto;
+        }
+        .reg {
+            margin-right: 10px;
         }
         .firstBlockOfHeader{
             background-color: #71B2B5;
@@ -102,6 +108,15 @@
         .logo{
             height: 5.5556vh;
             width: 3.1250vw;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        input:invalid {
+            border-color: red;
         }
         .contForButtonLogin{
             height:  11.5741vh;
